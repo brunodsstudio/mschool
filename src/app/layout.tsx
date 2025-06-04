@@ -23,10 +23,14 @@ export default function RootLayout({
     <>
     <SessionProvider>
     <html lang="en">
+      <head>
+        
+      </head>
       <body className={`${outfit.className} dark:bg-gray-900`}>
         <ThemeProvider>
           <SidebarProvider>{children}</SidebarProvider>
         </ThemeProvider>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" />
       </body>
     </html>
     </SessionProvider>

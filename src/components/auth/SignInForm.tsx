@@ -28,7 +28,7 @@ export default function SignInForm() {
   
 
   type frmfields ={
-    user: string;
+    email: string;
     password:string;
     
   }
@@ -55,7 +55,7 @@ async function registerUserAction(formData: FormData) {
 
   async function handleSignIn(data:data) {
 
-    const user = data.user;
+    const email = data.email;
     const password = data.password;
 
 
@@ -64,7 +64,7 @@ async function registerUserAction(formData: FormData) {
     try {
       const res = await signIn('credentials', {
         redirect: false,
-        user: user, password:password
+        email: email, password:password
       });
 
       console.log(res)
@@ -74,7 +74,7 @@ async function registerUserAction(formData: FormData) {
       } else {
         setPending(false);
         // Handle successful login here (e.g., redirect or store user data)
-        router.push("/");
+        router.push("/home");
   
       }
     } catch (error) {
@@ -162,9 +162,9 @@ async function registerUserAction(formData: FormData) {
               <div className="space-y-6">
                 <div>
                   <Label>
-                    User <span className="text-error-500">*</span>{" "}
+                    Email <span className="text-error-500">*</span>{" "}
                   </Label>
-                  <input placeholder="name" type="text" {...register('user')}/>
+                  <input placeholder="Nome: admin@admin.com" type="text" {...register('email')}/>
                 </div>
                 <div>
                   <Label>
@@ -173,7 +173,7 @@ async function registerUserAction(formData: FormData) {
                   <div className="relative">
                     <input
                       type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
+                      placeholder="Password: 1234"
                       {...register('password')}
                     />
                     <span

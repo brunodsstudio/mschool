@@ -26,7 +26,7 @@ type NavItem = {
   subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
 };
 
-const navItems: NavItem[] = [
+const navItemsx: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
@@ -63,7 +63,37 @@ const navItems: NavItem[] = [
   },
 ];
 
-const othersItems: NavItem[] = [
+const navItems: NavItem[] = [
+  {
+    icon: <UserCircleIcon />,
+    name: "Alunos",
+    path: "/home",
+    /*subItems: [
+      { name: "Todos", path: "/", pro: false }, 
+      { name: "Editar/Criar", path: "/", pro: false }
+    ],*/
+  },{
+    icon: <PageIcon />,
+    name: "Professores",
+    path: "/professores",
+  },
+  {
+    icon: <BoxCubeIcon />,
+    name: "Classes",
+    path: "/classes",
+  }
+  ,{
+    icon: <PieChartIcon />,
+    name: "Graficos",
+    path: "/graficos",
+  },
+  
+
+  
+
+]
+
+const othersItemsx: NavItem[] = [
   {
     icon: <PieChartIcon />,
     name: "Charts",
@@ -92,6 +122,9 @@ const othersItems: NavItem[] = [
       { name: "Sign Up", path: "/signup", pro: false },
     ],
   },
+];
+
+const othersItems: NavItem[] = [
 ];
 
 const AppSidebar: React.FC = () => {

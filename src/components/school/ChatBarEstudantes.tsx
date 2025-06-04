@@ -4,12 +4,37 @@ import React from "react";
 import { ApexOptions } from "apexcharts";
 
 import dynamic from "next/dynamic";
+import { use } from "react";
 // Dynamically import the ReactApexChart component
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-export default function BarChartOne() {
+type CGRAU = {
+    id: number;
+    nome: string;
+    sigla: string;
+    count: number;
+ }
+
+export default function BarChartOne({
+    chartdata,
+  }: {
+    chartdata: Promise<CGRAU[]>
+  }) {
+
+  const contGraus = use(chartdata)
+ // console.log(contGraus)
+
+  let head = [];
+  let data = [];
+  const header = contGraus.map((cg) => {
+    head.push(cg.sigla)
+    data.push(cg.count | 0)
+  })
+  //console.log(contGraus)
+  //console.log(head, data)
+
   const options: ApexOptions = {
     colors: ["#465fff"],
     chart: {
@@ -37,21 +62,7 @@ export default function BarChartOne() {
       colors: ["transparent"],
     },
     xaxis: {
-      categories: [
-        "E F",
-        "1º M",
-        "2º M",
-        "3º M",
-        "4º F",
-        "5º F",
-        "6º F",
-        "7º F",
-        "8º F",
-        "9º F",
-        "Cursinho",
-        "Em Casa",
-        "Outros",
-      ],
+      categories: head,
       axisBorder: {
         show: false,
       },
@@ -93,7 +104,7 @@ export default function BarChartOne() {
   const series = [
     {
       name: "Graus",
-      data: [168, 385, 201, 298, 187, 195, 291, 110, 215, 390, 280, 112],
+      data: data,
     },
   ];
   return (

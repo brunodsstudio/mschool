@@ -24,31 +24,31 @@ export const authOptions : NextAuthOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        user: { label: "Username", type: "text", placeholder: "jsmith", value: "administrator" },
-        password: { label: "Password", type: "password", value: "admin" },
+        //user: { label: "Username", type: "text", placeholder: "jsmith", value: "administrator" },
+        email: { label: "Email", type: "text", placeholder: "admin@admin.com.br", value: "admin@admin.com.br" },
+        password: { label: "Password", type: "password", value: "1234" },
       },
       async authorize(credentials, req) {
         // Include hidden values here
         const data = {
-          user: credentials.user,
+          email: credentials.email,
           password: credentials.password,
         };
 
         if (!credentials) throw new Error("Missing credentials");
 
      
-        const formData = toFormData(data);
+       const formData = toFormData(data);
+        console.log(formData);
         try {
-          const res = await fetch("http://localhost:3001/login", {
+          const res = await fetch("http://localhost:4001/auth/login", {
             method: 'POST',
-            body: formData,
-            headers: { 
-              "Content-Type": "application/x-www-form-urlencoded",
-            }
+            body: JSON.stringify(credentials),
+            headers: { "Content-Type": "application/json" }
           });
        
           const resData = await res.json();
-          console.log(resData)
+          console.log(res)
           
           /*if (res.ok && resData) {
             return resData.data;
